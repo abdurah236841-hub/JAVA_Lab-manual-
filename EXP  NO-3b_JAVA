@@ -1,1 +1,50 @@
 
+class PiCalculator {
+    private double radius;
+
+    public final double PI = Math.PI;
+
+    public PiCalculator(double radius) {
+        this.radius = radius;
+    }
+
+    protected double calculateArea(double radius) {
+        return this.PI * radius * radius;
+    }
+
+    public double calculateStoredArea() {
+        return calculateArea(this.radius);
+    }
+
+    public double getPiValue() {
+        return this.PI;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        double testRadius = 5.0;
+
+        PiCalculator calc = new PiCalculator(testRadius);
+
+        System.out.println("=== Pi Calculator Demonstration ===");
+
+        System.out.println("Value of Pi via public method: " + calc.getPiValue());
+        
+        System.out.println("Value of Pi via public constant: " + calc.PI);
+
+        System.out.println("\n=== Access Control Verification ===");
+
+        
+        System.out.println("[-] Attempting 'calc.radius' fails: Private variables cannot be accessed outside their class.");
+
+        System.out.println("\n=== Area Calculation ===");
+
+        double areaCustom = calc.calculateArea(testRadius);
+        System.out.println("Calculated Area (passed radius " + testRadius + "): " + areaCustom);
+
+        double areaStored = calc.calculateStoredArea();
+        System.out.println("Calculated Area (using internally stored private radius): " + areaStored);
+    }
+}
+
